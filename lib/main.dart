@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'widget/FractionallySizedBox.dart';
-
+import 'widget/Padding.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -31,8 +31,29 @@ class Bb {
   bool hh;
   Bb({required this.hh, required this.titl});
 }
+int ali(){
+  int fahad=0;
+// ignore: avoid_function_literals_in_foreach_calls
+nn.forEach((e) { 
+if (e.hh){fahad++;}
+});
+  return fahad;
+}
 
-List nn = [Bb(titl: "aaaaaaaaa", hh: false), Bb(titl: "vvvvvvv", hh: true)];
+List nn = [
+ 
+];
+
+nweTask() {
+  nn.add(
+    Bb(titl: vc, hh: false),
+  );
+}
+String vc = "";
+final myController = TextEditingController();
+myfun() {
+  vc = myController.text;
+}
 
 class _FhadState extends State<Fhad> {
   @override
@@ -41,34 +62,47 @@ class _FhadState extends State<Fhad> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.redAccent,
         onPressed: () {
-          showModalBottomSheet(
-            isScrollControlled : true,
+          showDialog(
               context: context,
               builder: (BuildContext context) {
-                return Container(
-                  padding: EdgeInsets.all(22),
-                  color: Colors.amber,
-                  // height: 500,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextField(
-                        cursorColor: Colors.red,
-
-                        maxLength: 20,
-                        decoration: InputDecoration(
-                           hintText:" اكتب المهام",
-                           border : OutlineInputBorder(),
-                            labelText :"المهمه",
+                return Dialog(
+                  backgroundColor: Colors.amber,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Container(
+                    padding: EdgeInsets.all(22),
+                    height: 200,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextField(
+                          cursorColor: Colors.red,
+                          controller: myController,
+                          maxLength: 20,
+                          decoration: InputDecoration(
+                            hintText: " اكتب المهام",
+                            border: OutlineInputBorder(),
+                            labelText: "المهمه",
+                          ),
                         ),
-                      ),
-                      TextButton(
-                        style : ButtonStyle(
-                           backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 44, 43, 42)),
-                        ),
-                        onPressed: () { Navigator.pop(context);}, 
-                        child: Text("اضافة",style: TextStyle(fontSize: 22),))
-                    ],
+                        TextButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Color.fromARGB(255, 44, 43, 42)),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                myfun();
+                                nweTask();
+                                Navigator.pop(context);
+                              });
+                            },
+                            child: Text(
+                              "اضافة",
+                              style: TextStyle(fontSize: 22),
+                            ))
+                      ],
+                    ),
                   ),
                 );
               });
@@ -88,7 +122,14 @@ class _FhadState extends State<Fhad> {
       ),
       // ignore: prefer_const_literals_to_create_immutables
       body: Column(
-        children: [...nn.map((e) => Fahad(vartitle: e.titl, done: e.hh))],
+        // ignore: prefer_const_literals_to_create_immutables
+        children: [
+         MyWidget(
+            aaa: nn.length,
+            bbb: ali(),
+         ),
+          ...nn.map((e) => Fahad(vartitle: e.titl, done: e.hh))
+        ],
       ),
     );
   }
