@@ -65,6 +65,17 @@ myfun() {
 }
 
 class _FhadState extends State<Fhad> {
+  delet(int bb) {
+    setState(() {
+      nn.remove(nn[bb]);
+    });
+  }
+  fahadd(){
+    setState(() {
+      nn.removeRange(0,nn.length);
+    });
+  }
+
   change(int ds) {
     setState(() {
       nn[ds].hh = !nn[ds].hh;
@@ -75,7 +86,7 @@ class _FhadState extends State<Fhad> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Color.fromARGB(255, 163, 37, 37),
         onPressed: () {
           showDialog(
               context: context,
@@ -91,7 +102,7 @@ class _FhadState extends State<Fhad> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextField(
-                          cursorColor: Colors.red,
+                          cursorColor: Color.fromARGB(255, 196, 28, 16),
                           controller: myController,
                           maxLength: 20,
                           decoration: InputDecoration(
@@ -124,9 +135,15 @@ class _FhadState extends State<Fhad> {
         },
         child: Icon(Icons.add),
       ),
-      backgroundColor: Color.fromARGB(255, 225, 186, 186),
+      backgroundColor: Color.fromARGB(255, 22, 21, 21),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 88, 82, 92),
+        leading: IconButton(
+          onPressed: () {  fahadd();},
+          icon: Icon(Icons.delete),
+          color: Colors.pink,
+          iconSize: 30,
+        ),
+        backgroundColor: Color.fromARGB(255, 58, 31, 77),
         title: Container(
             child: Center(
                 child: Text(
@@ -152,11 +169,11 @@ class _FhadState extends State<Fhad> {
                     itemCount: nn.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Fahad(
-                        vartitle: nn[index].titl,
-                        done: nn[index].hh,
-                        myfun: change,
-                        iii:index
-                      );
+                          vartitle: nn[index].titl,
+                          done: nn[index].hh,
+                          myfun: change,
+                          iii: index,
+                          delet: delet);
                     }),
               )
             ]),
