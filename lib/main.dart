@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
 import 'dart:developer';
+import 'dart:io';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'widget/FractionallySizedBox.dart';
@@ -47,7 +49,7 @@ int ali() {
 }
 
 List nn = [
-     Bb(titl: vc, hh: false),
+  Bb(titl: vc, hh: false),
 ];
 
 nweTask() {
@@ -63,6 +65,12 @@ myfun() {
 }
 
 class _FhadState extends State<Fhad> {
+  change(int ds) {
+    setState(() {
+      nn[ds].hh = !nn[ds].hh;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,7 +152,11 @@ class _FhadState extends State<Fhad> {
                     itemCount: nn.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Fahad(
-                          vartitle: nn[index].titl, done: nn[index].hh);
+                        vartitle: nn[index].titl,
+                        done: nn[index].hh,
+                        myfun: change,
+                        iii:index
+                      );
                     }),
               )
             ]),
