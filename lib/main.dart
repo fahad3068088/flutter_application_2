@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'widget/FractionallySizedBox.dart';
 import 'widget/Padding.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -31,17 +34,20 @@ class Bb {
   bool hh;
   Bb({required this.hh, required this.titl});
 }
-int ali(){
-  int fahad=0;
+
+int ali() {
+  int fahad = 0;
 // ignore: avoid_function_literals_in_foreach_calls
-nn.forEach((e) { 
-if (e.hh){fahad++;}
-});
+  nn.forEach((e) {
+    if (e.hh) {
+      fahad++;
+    }
+  });
   return fahad;
 }
 
 List nn = [
- 
+     Bb(titl: vc, hh: false),
 ];
 
 nweTask() {
@@ -49,6 +55,7 @@ nweTask() {
     Bb(titl: vc, hh: false),
   );
 }
+
 String vc = "";
 final myController = TextEditingController();
 myfun() {
@@ -121,15 +128,26 @@ class _FhadState extends State<Fhad> {
         ))),
       ),
       // ignore: prefer_const_literals_to_create_immutables
-      body: Column(
-        // ignore: prefer_const_literals_to_create_immutables
-        children: [
-         MyWidget(
-            aaa: nn.length,
-            bbb: ali(),
-         ),
-          ...nn.map((e) => Fahad(vartitle: e.titl, done: e.hh))
-        ],
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        // height: 600,
+        child: Column(
+            // ignore: prefer_const_literals_to_create_immutables
+            children: [
+              MyWidget(
+                aaa: nn.length,
+                bbb: ali(),
+              ),
+              Container(
+                height: 600,
+                child: ListView.builder(
+                    itemCount: nn.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Fahad(
+                          vartitle: nn[index].titl, done: nn[index].hh);
+                    }),
+              )
+            ]),
       ),
     );
   }
