@@ -25,8 +25,10 @@ final int iii;
                     children: [
                       Text(
                         vartitle,
-                        style: TextStyle(fontSize: 20),
-                      ),
+                        style: TextStyle(
+                         
+                          decoration: done?TextDecoration.lineThrough:TextDecoration.none,
+                          fontSize: 30),),
                      Row(
                        children: [
                          Icon(
